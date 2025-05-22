@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="io.ente.photos">
+    package="io.ente.photos"
+    android:networkSecurityConfig="@xml/network_security_config"
+    >
     
     <!-- Adding the following block to prevent the app from having multiple
     launcher entries. We can remove this along with the `LAUNCHER` category from

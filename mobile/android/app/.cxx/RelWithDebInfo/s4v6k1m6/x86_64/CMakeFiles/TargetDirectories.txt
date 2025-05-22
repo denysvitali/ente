@@ -1,0 +1,2 @@
+/home/dvitali/Documents/git/ente/mobile/android/app/.cxx/RelWithDebInfo/s4v6k1m6/x86_64/CMakeFiles/edit_cache.dir
+/home/dvitali/Documents/git/ente/mobile/android/app/.cxx/RelWithDebInfo/s4v6k1m6/x86_64/CMakeFiles/rebuild_cache.dir
