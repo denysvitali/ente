@@ -1,4 +1,4 @@
-name: "Build Debug APK (photos)"
+name: "Build Release APK (photos)"
 
 on:
     workflow_dispatch: # Allow manually running the action
@@ -35,13 +35,13 @@ jobs:
                   flutter-version: ${{ env.FLUTTER_VERSION }}
                   cache: true
 
-            - name: Build PlayStore Debug APK
+            - name: Build PlayStore Release APK
               run: |
-                  flutter build apk --debug --dart-define=cronetHttpNoPlay=true --flavor playstore
+                  flutter build apk --release --dart-define=cronetHttpNoPlay=true --flavor playstore
 
-            - name: Upload Debug APK
+            - name: Upload Release APK
               uses: actions/upload-artifact@v4
               with:
-                  name: photos-playstore-debug-apk
-                  path: mobile/build/app/outputs/apk/playstore/debug/app-playstore-debug.apk
+                  name: photos-playstore-release-apk
+                  path: mobile/build/app/outputs/apk/playstore/release/app-playstore-release.apk
                   if-no-files-found: error
