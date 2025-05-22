@@ -37,7 +37,7 @@ jobs:
 
             - name: Build PlayStore Release APK
               run: |
-                  flutter build apk --release --dart-define=cronetHttpNoPlay=true --flavor playstore
+                  flutter build apk --dart-define=cronetHttpNoPlay=true --flavor playstore
 
             - name: Upload Release APK
               uses: actions/upload-artifact@v4
