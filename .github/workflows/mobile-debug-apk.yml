@@ -1,0 +1,47 @@
+name: "Build Debug APK (photos)"
+
+on:
+    workflow_dispatch: # Allow manually running the action
+
+env:
+    FLUTTER_VERSION: "3.24.3"
+
+permissions:
+    contents: read # Only need to read the repo
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        defaults:
+            run:
+                working-directory: mobile
+
+        steps:
+            - name: Checkout code and submodules
+              uses: actions/checkout@v4
+              with:
+                  submodules: recursive
+
+            - name: Setup JDK 17
+              uses: actions/setup-java@v1
+              with:
+                  java-version: 17
+
+            - name: Install Flutter ${{ env.FLUTTER_VERSION }}
+              uses: subosito/flutter-action@v2
+              with:
+                  channel: "stable"
+                  flutter-version: ${{ env.FLUTTER_VERSION }}
+                  cache: true
+
+            - name: Build PlayStore Debug APK
+              run: |
+                  flutter build apk --debug --dart-define=cronetHttpNoPlay=true --flavor playstore
+
+            - name: Upload Debug APK
+              uses: actions/upload-artifact@v4
+              with:
+                  name: photos-playstore-debug-apk
+                  path: mobile/build/app/outputs/apk/playstore/debug/app-playstore-debug.apk
+                  if-no-files-found: error
